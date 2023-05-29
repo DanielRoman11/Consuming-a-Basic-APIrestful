@@ -7,8 +7,9 @@
   --text-color: #f8e4cc;
   --text-color-form: --text-color;
   --card-color: #FFE6CD;
+  --input-bg: #151F30;
 }
-body{ 
+body{
   font-family: 'JetBrains Mono', monospace;
   background: var(--background-color);
   background-attachment: fixed;
@@ -42,17 +43,18 @@ ion-icon:not(:active){
   position: fixed;
   top: 5rem;
   display: none;
+  align-items: center;
   width: 17rem;
   z-index: 1;
   padding: 0 1rem;
   font-variant: normal;
   font-size: 1rem;
   font-weight: bold;
-  color: white;
   flex-direction: column;
-  padding: 2rem 0.5rem;
+  padding: 1rem 0.2rem;
   border: 3px dashed #f8e4cc;
   border-radius: 10px;
+  color: var(--text-color)
 }
 .rotate-90 {
   transform: rotate(90deg);
@@ -63,7 +65,7 @@ ion-icon:not(:active){
   transition: transform 0.5s ease;
 }
 .slide-out {
-  transform: translateX(-100%);
+  transform: translateX(-120%);
   transition: transform 0.5s ease;
 }
 .error{
@@ -78,11 +80,19 @@ ion-icon:not(:active){
   color: #ffffff !important;
 }
 input{
-  width: 90%;
+  color: var(--text-color);
+  background: var(--input-bg);
+  width: 60%;
   padding: 0.5rem;
   margin: 1rem 0;
   border: none;
   border-radius: 5px;
+}
+input[type=submit]{
+  background: var(--text-color);
+  color: var(--input-bg);
+  font-weight: bold;
+  text-align: center;
 }
 input:focus, textarea:focus{
   outline: 0 solid #306844;

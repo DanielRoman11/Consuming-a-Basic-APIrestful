@@ -13,19 +13,35 @@ async function getEmployees(done) {
 
 getEmployees(data => {
   data.forEach(employee => {
-    const section = document.createRange().createContextualFragment(
-      /*html*/`
-      <div class="empleado-container">
-        <h3>Nombre: ${employee.name}</h3>
-        <p>Salario: ${employee.salary}</p>
-      </div>
-      `
-    );
-    const content = document.getElementById("content");
+    const section = document.createElement("div");
+    section.classList.add("empleado-container");
 
-    content.append(section)
+    const nameElement = document.createElement("h3");
+    nameElement.textContent = `Nombre: ${employee.name}`;
+
+    const salaryElement = document.createElement("p");
+    salaryElement.textContent = `Salario: ${employee.salary}`;
+
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "Delete";
+    deleteButton.classList.add("button", "deleteBtn");
+    
+
+    const editButton = document.createElement("button");
+    editButton.textContent = "Edit";
+    editButton.classList.add("button", "editBtn");
+    
+    section.appendChild(nameElement);
+    section.appendChild(salaryElement);
+    section.appendChild(deleteButton);
+    section.appendChild(editButton);
+
+    const content = document.getElementById("content");
+    content.appendChild(section);
   });
-})
+});
+
+
 
 const showBtn = document.getElementById("showBtn");
 
@@ -45,14 +61,16 @@ arrowBtn.addEventListener("click", () => {
     arrowBtn.classList.remove("rotate-90");
   }
   if (isFormVisible) {
-    myForm.classList.add("slide-in");
-    myForm.classList.remove("slide-out");
     myForm.style.display = "flex";
+    setTimeout(() => {
+      myForm.classList.add("slide-in");
+      myForm.classList.remove("slide-out");
+    }, 100);
   } else {
     myForm.classList.add("slide-out");
     myForm.classList.remove("slide-in");
     setTimeout(() => {
-      myForm.style.display = "none"; // Ocultar el formulario después de la animación
-    }, 500); // Ajusta este valor para que coincida con la duración de la transición en segundos
+      myForm.style.display = "none"; 
+    }, 500);
   }
 });
