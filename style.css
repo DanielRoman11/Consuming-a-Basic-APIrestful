@@ -127,7 +127,7 @@ input:focus, textarea:focus{
   border-radius: 10px;
   color: var(--text-color);
   max-width: 100%;
-  min-width: 20rem;
+  min-width: 4.6rem;
 }
 .empleado-container:nth-child(2n+1){
   background-color: #FF7A48;

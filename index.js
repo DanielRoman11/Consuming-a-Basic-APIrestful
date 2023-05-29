@@ -1,46 +1,53 @@
 async function getEmployees(done) {
-  fetch("https://backend-node-production-4066.up.railway.app/api/employees/", {
-
-  }) 
-  .then(response => response.json())
+  fetch("https://backend-node-production-4066.up.railway.app/api/employees/") 
+  .then(response => {
+    if(!response.ok){
+      throw new Error("Network response was NOT ok 🙅‍♂️")
+    }
+    return response.json()
+  })
   .then(data => {
-    done(data)
+    
+    if(data === null){
+      throw new Error("Data is null")
+    } 
+    return done(data)
   })
   .catch(error => {
-    console.log('Ha ocurrido un error:', error);
+    console.log('There was an error:', error);
   });
 }
+
+const form = document.getElementById("addEmployee");
 
 getEmployees(data => {
   data.forEach(employee => {
     const section = document.createElement("div");
     section.classList.add("empleado-container");
 
+    const idElement = document.createElement("p");
     const nameElement = document.createElement("h3");
-    nameElement.textContent = `Nombre: ${employee.name}`;
-
     const salaryElement = document.createElement("p");
-    salaryElement.textContent = `Salario: ${employee.salary}`;
-
     const deleteButton = document.createElement("button");
+    const editButton = document.createElement("button");
+    
+    
+    idElement.textContent = `ID: ${employee.id}`
+    nameElement.textContent = `Nombre: ${employee.name}`;
+    salaryElement.textContent = `Salario: ${employee.salary}`;
+    
     deleteButton.textContent = "Delete";
     deleteButton.classList.add("button", "deleteBtn");
     
-
-    const editButton = document.createElement("button");
     editButton.textContent = "Edit";
     editButton.classList.add("button", "editBtn");
-    
-    section.appendChild(nameElement);
-    section.appendChild(salaryElement);
-    section.appendChild(deleteButton);
-    section.appendChild(editButton);
+
+    section.append(idElement, nameElement, salaryElement, deleteButton, editButton);
 
     const content = document.getElementById("content");
     content.appendChild(section);
   });
 });
-
 
 
 const showBtn = document.getElementById("showBtn");
