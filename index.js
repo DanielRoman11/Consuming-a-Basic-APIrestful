@@ -29,11 +29,30 @@ getEmployees(data => {
 
 const showBtn = document.getElementById("showBtn");
 
-function showForm(e) {
-  const form = document.querySelector("form[id = 'addEmployee']");
-  const formStyle = window.getComputedStyle(form)
+const arrowBtn = document.querySelector("ion-icon");
+const myForm = document.getElementById("addEmployee");
 
-  return formStyle.left ? form.style.animation = "showForm 2s ease-in-out;" ? setTimeout(form.style.left = "64px", 1200) : form.style.left = "64px" : form.style.left = "-400px"
-}
+let isRotated = false;
+let isFormVisible = false;
 
-showBtn.addEventListener("click", e => showForm())
+arrowBtn.addEventListener("click", () => {
+  isRotated = !isRotated;
+  isFormVisible = !isFormVisible;
+
+  if (isRotated) {
+    arrowBtn.classList.add("rotate-90");
+  } else {
+    arrowBtn.classList.remove("rotate-90");
+  }
+  if (isFormVisible) {
+    myForm.classList.add("slide-in");
+    myForm.classList.remove("slide-out");
+    myForm.style.display = "flex";
+  } else {
+    myForm.classList.add("slide-out");
+    myForm.classList.remove("slide-in");
+    setTimeout(() => {
+      myForm.style.display = "none"; // Ocultar el formulario después de la animación
+    }, 500); // Ajusta este valor para que coincida con la duración de la transición en segundos
+  }
+});
