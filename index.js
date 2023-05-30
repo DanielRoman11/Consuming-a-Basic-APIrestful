@@ -1,5 +1,5 @@
 async function getEmployees(done) {
-  fetch("https://backend-node-production-4066.up.railway.app/api/employees/") 
+  fetch("http://localhost:3000/api/employees/") 
   .then(response => {
     if(!response.ok){
       throw new Error("Network response was NOT ok 🙅‍♂️")
@@ -71,12 +71,18 @@ form.onsubmit = async e => {
     const content = document.getElementById("addEmployee");
     content.removeChild(error[0]);
   }
-    
-  let response = await fetch("https://backend-node-production-4066.up.railway.app/api/employees/", {
+
+  const values = {name: formData.get("name") ,salary: formData.get("salary")}
+
+  let response = await fetch("http://localhost:3000/api/employees/", {
+    headers: {
+      "Accept": "application/json",
+      "Content-type": "application/json",
+    },
     method: "POST",
-    body: new FormData(form)
+    body: JSON.stringify(values),
   });
-  
+
   let result = await response.json();
 
   console.log(result);
