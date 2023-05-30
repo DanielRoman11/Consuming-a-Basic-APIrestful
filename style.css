@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Sigmar&display=swap');
-
 :root{
   --background-color: linear-gradient(90deg, #0d0d0d 0%, #151F30 51%, #0d0d0d 100%);
   --title-color: #f8e4cc;
@@ -116,7 +115,6 @@ input:focus, textarea:focus{
   text-align: justify;
   width: 100%;
 }
-
 .empleado-container{
   padding: 5rem;
   position: relative;
@@ -138,7 +136,6 @@ input:focus, textarea:focus{
 .empleado-container:nth-child(3n-1){
   background-color: #0593A2;
 }
-
 @media (max-width: 768px) {
   .seccion{flex-direction: column;}
   .contenedor-btn{border: 0; padding: 1rem; top: 0; margin-bottom: 5rem; height: 40vh;}

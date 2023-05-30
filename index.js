@@ -1,5 +1,5 @@
 async function getEmployees(done) {
-  fetch("http://localhost:3000/api/employees/") 
+  fetch("https://backend-node-production-4066.up.railway.app/api/employees") 
   .then(response => {
     if(!response.ok){
       throw new Error("Network response was NOT ok 🙅‍♂️")
@@ -74,7 +74,7 @@ form.onsubmit = async e => {
 
   const values = {name: formData.get("name") ,salary: formData.get("salary")}
 
-  let response = await fetch("http://localhost:3000/api/employees/", {
+  let response = await fetch("https://backend-node-production-4066.up.railway.app/api/employees", {
     headers: {
       "Accept": "application/json",
       "Content-type": "application/json",
