@@ -18,7 +18,6 @@ async function getEmployees(done) {
   });
 }
 
-const form = document.getElementById("addEmployee");
 
 getEmployees(data => {
   data.forEach(employee => {
@@ -49,6 +48,39 @@ getEmployees(data => {
   });
 });
 
+
+const form = document.getElementById("addEmployee")
+form.onsubmit = async e => {
+  e.preventDefault();
+
+  const formData = new FormData(form);
+
+  if(formData.get("name") === "" || formData.get(salary) === ""){
+    const section = document.createElement("div");
+    section.classList.add("error");
+    const error = document.createElement("p");
+    error.textContent = "Todos los campos son necesarios"
+
+    section.appendChild(error)
+
+    const content = document.getElementById("addEmployee");
+    return content.appendChild(section);
+  }
+  const error = document.getElementsByClassName("error")
+  if(error[0]){
+    const content = document.getElementById("addEmployee");
+    content.removeChild(error[0]);
+  }
+    
+  let response = await fetch("https://backend-node-production-4066.up.railway.app/api/employees/", {
+    method: "POST",
+    body: new FormData(form)
+  });
+  
+
+  console.log("Enviado 🙆");
+  form.reset()
+}
 
 const showBtn = document.getElementById("showBtn");
 

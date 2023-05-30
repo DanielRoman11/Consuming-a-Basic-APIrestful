@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
-  <script defer type="module" src="index.js"></script>
+  <script defer src="index.js"></script>
   <script defer type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script defer nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   <title>Fetch API Rest</title>
@@ -16,10 +16,10 @@
     <section>
       <div>
         <ion-icon id="showBtn" name="chevron-forward-circle-outline"></ion-icon>
-        <form id="addEmployee" class="content-form" action="https://backend-node-production-4066.up.railway.app/api/employees" method="post">
+        <form id="addEmployee" class="content-form" action="https://backend-node-production-4066.up.railway.app/api/employees" method="post" novalidate>
           <label for="name">Name: </label><input type="text" name="name" id="name" required>
           <label for="salary">Salary: </label><input type="number" name="salary" id="salary">
-          <input type="submit" value="Add Employee">
+          <input id="addBtn" type="submit" value="Add Employee">
         </form>
       </div>
     </section>
