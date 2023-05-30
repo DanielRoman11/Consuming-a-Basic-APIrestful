@@ -30,12 +30,8 @@ ion-icon{
   color: #f8e4cc;
   font-size: 4rem;
 }
-ion-icon:active{
-  transition: 1s;
-}
-ion-icon:not(:active){
-  transition: 0.5s;
-}
+ion-icon:active{ transition: 1s; }
+ion-icon:not(:active){ transition: 0.5s; }
 .content-form{
   background-color: rgba(0 0 0 / 0.5);
   backdrop-filter: blur(15px);
@@ -127,32 +123,15 @@ input:focus, textarea:focus{
   max-width: 100%;
   min-width: 4.6rem;
 }
-.empleado-container:nth-child(2n+1){
-  background-color: #FF7A48;
-}
-.empleado-container:nth-child(4n+0){
-  background-color: #E3371E;
-}
-.empleado-container:nth-child(3n-1){
-  background-color: #0593A2;
-}
+.empleado-container:nth-child(2n+1){ background-color: #FF7A48; }
+.empleado-container:nth-child(4n+0){ background-color: #E3371E; }
+.empleado-container:nth-child(3n-1){ background-color: #0593A2; }
 @media (max-width: 768px) {
   .seccion{flex-direction: column;}
   .contenedor-btn{border: 0; padding: 1rem; top: 0; margin-bottom: 5rem; height: 40vh;}
   .contenido{padding: 0; gap: 5px; overflow-x: hidden; max-width: 100%;}
   div.caja{margin: 0 !important; max-width: 100% !important; min-width: 10rem;}
 }
-@keyframes backgroundMove {
-  to{
-    background-position-x: 100vw;
-    background-position-y: -100vh;
-  }
-}
-@keyframes showForm {
-  from{ left: -400px} 
-  to{ left: 4rem;}
-}
-@keyframes hideForm {
-  from{ left: 4rem}
-  to{ left: -400px;}
-}
+@keyframes backgroundMove { to{ background-position-x: 100vw; background-position-y: -100vh;} }
+@keyframes showForm { from{ left: -400px} to{ left: 4rem;} }
+@keyframes hideForm { from{ left: 4rem} to{ left: -400px;} }
