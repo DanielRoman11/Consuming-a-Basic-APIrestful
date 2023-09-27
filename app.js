@@ -5,9 +5,11 @@ const API_URL = "https://employeeapp-lw7c.onrender.com";
 const content = document.getElementById("content");
 
 //* Get
-fetch(`${API_URL}/api/employees`)
-.then((res) => res.json())
-.then((employee) => {
+async function fetchEmployees() {
+  const response = await fetch(`${API_URL}/api/employees`)
+  .then((res) => res.json())
+}
+fetchEmployees().then(employee => {
   if(Object.keys(employee) === 0) return content.textContent('Employees list is empty');
 
   employee.map(e => {
