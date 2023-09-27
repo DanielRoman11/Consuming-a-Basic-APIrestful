@@ -1,5 +1,5 @@
 async function getEmployees(done) {
-  fetch("https://backend-node-production-4066.up.railway.app/api/employees") 
+  fetch("https://employeeapp-lw7c.onrender.com/api/employees") 
   .then(response => {
     if(!response.ok){
       throw new Error("Network response was NOT ok 🙅‍♂️")
@@ -18,7 +18,7 @@ async function getEmployees(done) {
   });
 }
 
-
+//* GET Method
 getEmployees(data => {
   data.forEach(employee => {
     const section = document.createElement("div");
@@ -50,6 +50,7 @@ getEmployees(data => {
 
 
 const form = document.getElementById("addEmployee")
+//* POST Method
 form.onsubmit = async e => {
   e.preventDefault();
 
@@ -88,37 +89,6 @@ form.onsubmit = async e => {
   console.log(result);
 
   console.log("Enviado 🙆");
+  window.location.reload()
   form.reset()
 }
-
-const showBtn = document.getElementById("showBtn");
-
-const arrowBtn = document.querySelector("ion-icon");
-const myForm = document.getElementById("addEmployee");
-
-let isRotated = false;
-let isFormVisible = false;
-
-arrowBtn.addEventListener("click", () => {
-  isRotated = !isRotated;
-  isFormVisible = !isFormVisible;
-
-  if (isRotated) {
-    arrowBtn.classList.add("rotate-90");
-  } else {
-    arrowBtn.classList.remove("rotate-90");
-  }
-  if (isFormVisible) {
-    myForm.style.display = "flex";
-    setTimeout(() => {
-      myForm.classList.add("slide-in");
-      myForm.classList.remove("slide-out");
-    }, 100);
-  } else {
-    myForm.classList.add("slide-out");
-    myForm.classList.remove("slide-in");
-    setTimeout(() => {
-      myForm.style.display = "none"; 
-    }, 500);
-  }
-});
