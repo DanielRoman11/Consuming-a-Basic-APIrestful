@@ -3,12 +3,13 @@
 :root{
   --background-color: linear-gradient(90deg, #0d0d0d 0%, #151F30 51%, #0d0d0d 100%);
   --title-color: #f8e4cc;
-  --text-color: #f8e4cc;
+  --text-color: #fffefe;
   --text-color-form: --text-color;
-  --card-color: #FFE6CD;
-  --input-bg: #151F30;
+  --card-color: #1B273D;
+  --input-bg: #1B273D;
 }
 body{
+  margin: 0 auto !important;
   font-family: 'JetBrains Mono', monospace;
   background: var(--background-color);
   background-attachment: fixed;
@@ -20,7 +21,14 @@ h1{
   font-size: 4rem;
   text-align: center;
   color: var(--title-color);
-  padding-top: 5rem;
+}
+h4{
+  padding: 0;
+  margin: 0;
+}
+p{
+  padding: 0;
+  margin: 0;
 }
 ion-icon{
   z-index: 1;
@@ -94,52 +102,79 @@ input:focus, textarea:focus{
   outline-style: auto;
   outline-width: 0.5px;
 }
-#content{
-  color: #0593A2;
-  border-radius: 5px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  flex: 1 1 auto;
-  word-wrap: break-word;
-  margin: 0 !important;
-  width: 100%;
-  gap: 1rem;
-}
-
 .empleado-container{
-  padding: 5rem;
-  position: relative;
-  height: max-content;
-  flex-grow: 1;
-  border: none;
-  border-radius: 10px;
-  color: var(--text-color);
-  max-width: 100%;
-  min-width: 4.6rem;
+  padding: 2rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 0.9rem;
 }
-
 .card{
   display: flex;
   flex-direction: column;
-  background-color: #f5f5f5;
-  border-radius: 5px;
-  width: 350px;
+  background-color: var(--card-color);
+  border-radius: 10px;
+  width: 16em;
   padding: 1rem 1.5rem;
 }
+.header{
+  display: flex;
+  flex-direction: row;
+}
+.footer{
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.9rem;
+}
+:is(button:first-of-type, button:last-child){
+  border-radius: 1px;
+  padding: 0.5rem 1.5rem;
+  border-radius: 5px;
+  font-weight: 500;
+  cursor: pointer;
+}
+button:hover{
+  outline-style: solid;
+  outline-offset: 1.2px;
+}
 
+button:first-of-type{
+  background: #4f46e5;
+  font-weight: 700;
+  border: 0.1rem solid #4e46e5af;
+  color: #fff;
+  outline-color: #4f46e5;
+}
+button:last-of-type{
+  font-weight: 700;
+  border: 0.1rem solid #0d0d0d;
+  outline-color: var(--text-color);
+}
+.section{
+  flex: content;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 0em 1.5rem;
+  font-size: 0.9rem !important;
+  font-weight: 400;
+  color: var(--text-color);
+}
+.section>h4{
+  font-weight: 600;
+}
 .id{
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
   background-color: #151F30;
   border-radius: 9999px;
-  padding: 1rem 1.3rem;
+  padding: 1em 1.3em;
+  text-align: center;
   width: min-content;
 }
 
-@media (max-width: 768px) {
-  .seccion{flex-direction: column;}
-  .contenedor-btn{border: 0; padding: 1rem; top: 0; margin-bottom: 5rem; height: 40vh;}
-  .contenido{padding: 0; gap: 5px; overflow-x: hidden; max-width: 100%;}
-}
 @keyframes backgroundMove { to{ background-position-x: 100vw; background-position-y: -100vh;} }
 @keyframes showForm { from{ left: -400px} to{ left: 4rem;} }
 @keyframes hideForm { from{ left: 4rem} to{ left: -400px;} }
