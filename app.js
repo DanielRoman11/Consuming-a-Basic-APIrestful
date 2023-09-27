@@ -6,8 +6,8 @@ const content = document.getElementById("content");
 
 //* Get
 async function fetchEmployees() {
-  const response = await fetch(`${API_URL}/api/employees`)
-  .then((res) => res.json())
+  const response = await fetch(`${API_URL}/api/employees`);
+  return await response.json();
 }
 fetchEmployees().then(employee => {
   if(Object.keys(employee) === 0) return content.textContent('Employees list is empty');
