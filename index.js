@@ -73,7 +73,7 @@ form.onsubmit = async e => {
     content.removeChild(error[0]);
   }
 
-  const values = {name: formData.get("name") ,salary: formData.get("salary")}
+  const values = {name: formData.get("name"), salary: formData.get("salary")}
 
   let response = await fetch("https://backend-node-production-4066.up.railway.app/api/employees", {
     headers: {

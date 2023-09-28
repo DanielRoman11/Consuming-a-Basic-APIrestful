@@ -1,3 +1,5 @@
+import { requestPatch } from "../app.js";
+
 export function newArticle(id, name, salary ){
   let article = document.createElement("article");
   
@@ -29,12 +31,24 @@ export function newArticle(id, name, salary ){
 
   idE.classList.add("id");
 
+  //* Attributes
+  editE.setAttribute('data-id', id);
+
+  //* Functions
+  editE.onclick = function () {
+    getEmployeeID(this)
+  }
+  
   //* AppendChilds
   sectionE.append(nameE, salaryE);
   headerE.append(idE, sectionE);
   footerE.append(editE, deleteE);
   article.append(headerE, footerE);
 
-
   return article;
+}
+
+export function getEmployeeID(button){
+  const id = button.getAttributte('data-id');
+  requestPatch(id)
 }

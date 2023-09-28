@@ -24,7 +24,7 @@ arrowBtn.addEventListener("click", () => {
     myForm.classList.add("slide-out");
     myForm.classList.remove("slide-in");
     setTimeout(() => {
-      myForm.style.display = "none"; 
+      myForm.style.display = "none";
     }, 500);
   }
 });
