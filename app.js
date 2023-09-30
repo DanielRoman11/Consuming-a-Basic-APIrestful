@@ -22,14 +22,20 @@ fetchEmployees().then(employee => {
 });
 
 //* Post
-const form = document.getElementById("addEmployee");
+export let form = document.getElementById("addEmployee");
 
 form.onsubmit = async e => {
   e.preventDefault();
 
-  const formData = new FormData(form);
+  const formulario = new FormData(form);
 
-  if(formData.get("name") === "" || formData.get(salary) === ""){
+  let nombre = formulario.get("name");
+  let salario = formulario.get("salary");
+
+  // console.log(nombre);
+  // console.log(salario);
+
+  if(nombre === "" || salario === ""){
     const section = document.createElement("div");
     section.classList.add("error");
     const error = document.createElement("p");
@@ -37,22 +43,24 @@ form.onsubmit = async e => {
 
     section.appendChild(error)
 
+
     const content = document.getElementById("addEmployee");
-    return content.appendChild(section);
-  }
-  const error = document.getElementsByClassName("error")
-  if(error[0]){
-    const content = document.getElementById("addEmployee");
-    content.removeChild(error[0]);
+    content.appendChild(section);
+
+    return setTimeout(() => {
+      section.remove();
+    }, 3000)
   }
 
   const values = {
-    name: formData.get("name"),
-    salary: formData.get("salary")
+    name: nombre,
+    salary: salario
   }
+  
+  form.reset();
 
   try {
-    let response = await fetch(`${API_URL}/api/employees`, {
+    await fetch(`${API_URL}/api/employees`, {
       headers: {
         "Accept": "application/json",
         "Content-type": "application/json",
@@ -61,23 +69,15 @@ form.onsubmit = async e => {
       body: JSON.stringify(values),
     });
 
-    let result = await response.json();
-
-    console.log(result);
-
-    console.log("Enviado 🙆");
-    window.location.reload();
-    form.reset();
   } catch (error) {
-    console.error(error);
+    console.error('There was an error: ', error);
   }
 }
 
 //* Update
 export function requestPatch(id) {
-  const apiUrl = `${API_URL}/${id}`;
 
-  const form = document.createElement("form");
+  const apiUrl = `${API_URL}/${id}`;
 
   const values = {  
     name: form.get("name"),

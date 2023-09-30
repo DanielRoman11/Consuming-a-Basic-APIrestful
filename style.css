@@ -37,6 +37,7 @@ ion-icon{
   left: 1rem;
   color: #f8e4cc;
   font-size: 4rem;
+  cursor: pointer;
 }
 ion-icon:active{ transition: 1s; }
 ion-icon:not(:active){ transition: 0.5s; }
@@ -64,12 +65,12 @@ ion-icon:not(:active){ transition: 0.5s; }
   transition: transform 0.1s ease-in-out;
 }
 .slide-in {
-  transform: translateX(0);
-  transition: transform 0.2s ease;
+  transform: translateX(2rem);
+  transition: transform 0.1s ease;
 }
 .slide-out {
   transform: translateX(-120%);
-  transition: transform 0.2s ease;
+  transition: transform 0.1s ease;
 }
 .error{
   background-color: red;
@@ -176,5 +177,5 @@ button:last-of-type{
 }
 
 @keyframes backgroundMove { to{ background-position-x: 100vw; background-position-y: -100vh;} }
-@keyframes showForm { from{ left: -400px} to{ left: 5rem;} }
-@keyframes hideForm { from{ left: 4rem} to{ left: -400px;} }
+@keyframes showForm { from{ left: -400px} to{ left: 6rem;} }
+@keyframes hideForm { from{ left: 6rem} to{ left: -400px;} }

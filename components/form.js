@@ -5,7 +5,9 @@ const myForm = document.getElementById("addEmployee");
 let isRotated = false;
 let isFormVisible = false;
 
-arrowBtn.addEventListener("click", () => {
+arrowBtn.addEventListener("click", () => rotatedButton());
+
+function rotatedButton(){
   isRotated = !isRotated;
   isFormVisible = !isFormVisible;
 
@@ -16,15 +18,24 @@ arrowBtn.addEventListener("click", () => {
   }
   if (isFormVisible) {
     myForm.style.display = "flex";
-    setTimeout(() => {
-      myForm.classList.add("slide-in");
-      myForm.classList.remove("slide-out");
-    }, 100);
+    myForm.classList.add("slide-in");
+    myForm.classList.remove("slide-out");
   } else {
     myForm.classList.add("slide-out");
     myForm.classList.remove("slide-in");
     setTimeout(() => {
       myForm.style.display = "none";
-    }, 500);
+    }, 100);
   }
-});
+}
+export function showButton(){
+  if(!isFormVisible && !isRotated){
+    arrowBtn.classList.add("rotate-90");
+    myForm.style.display = "flex";
+    myForm.classList.add("slide-in");
+    myForm.classList.remove("slide-out");
+
+    isRotated = !isRotated;
+    isFormVisible = !isFormVisible;
+  }
+}
