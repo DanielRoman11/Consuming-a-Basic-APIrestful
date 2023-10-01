@@ -36,37 +36,22 @@ export function newArticle(id, name, salary ){
   editE.setAttribute('data-id', id);
 
   //* Functions
-  editE.onclick = function () {
+  editE.onclick =  async function () {
     showButton();
 
-    const id = editE.closest(".footer").previousSibling.firstChild.textContent;
+    const id = this.getAttribute('data-id');
 
-    form.method = "PUT";
-
-    const formulario = new FormData(form);
-
-    let nombre = formulario.get("name");
-    let salario = formulario.get("salary");
-
-    if(nombre === "" || salario === ""){
-      const section = document.createElement("div");
-      section.classList.add("error");
-      const error = document.createElement("p");
-      error.textContent = "Todos los campos son necesarios"
-  
-      section.appendChild(error)
-  
-  
-      const content = document.getElementById("addEmployee");
-      content.appendChild(section);
-  
-      return setTimeout(() => {
-        section.remove();
-      }, 3000)
-    }
-
+    fetch(`${API_URL}/${id}`)
+    .then(res => {
+      if(!res.ok) throw new Error(`HTTP error!: ${res.status}`)
+      return res.json();
+    }).then(data => {
+      console.log(data);
+    }).catch(error => {
+      console.error(error);
+    })
     
-
+    ;
   }
   
   //* AppendChilds
@@ -76,9 +61,4 @@ export function newArticle(id, name, salary ){
   article.append(headerE, footerE);
 
   return article;
-}
-
-export function getEmployeeID(button){
-  const id = button.getAttributte('data-id');
-  requestPatch(id)
 }

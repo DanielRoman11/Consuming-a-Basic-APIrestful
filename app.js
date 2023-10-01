@@ -1,12 +1,12 @@
 import { newArticle } from "./components/index.js";
 
-export const API_URL = "https://employeeapp-lw7c.onrender.com";
+export const API_URL = "https://employeeapp-lw7c.onrender.com/api/employees";
 
 const content = document.getElementById("content");
 
 //* Get
 async function fetchEmployees() {
-  const response = await fetch(`${API_URL}/api/employees`);
+  const response = await fetch(`${API_URL}`);
   return await response.json();
 }
 
@@ -27,6 +27,7 @@ export let form = document.getElementById("addEmployee");
 form.onsubmit = async e => {
   e.preventDefault();
 
+  try {
   const formulario = new FormData(form);
 
   let nombre = formulario.get("name");
@@ -57,17 +58,19 @@ form.onsubmit = async e => {
     salary: salario
   }
   
+  await fetch(`${API_URL}`, {
+    headers: {
+      "Accept": "application/json",
+      "Content-type": "application/json",
+    },
+    method: "POST",
+    body: JSON.stringify(values),
+  });
+
   form.reset();
 
-  try {
-    await fetch(`${API_URL}/api/employees`, {
-      headers: {
-        "Accept": "application/json",
-        "Content-type": "application/json",
-      },
-      method: "POST",
-      body: JSON.stringify(values),
-    });
+
+
 
   } catch (error) {
     console.error('There was an error: ', error);
@@ -75,35 +78,54 @@ form.onsubmit = async e => {
 }
 
 //* Update
-export function requestPatch(id) {
+export async function requestPatch(id) {
+  try {
+    form.method = "PUT";
+    
+    const formulario = new FormData(form);
 
-  const apiUrl = `${API_URL}/${id}`;
+    let nombre = formulario.get("name");
+    let salario = formulario.get("salary");
+    
+    const values = {
+      name: nombre,
+      salary: salario
+    }
 
-  const values = {  
-    name: form.get("name"),
-    salary: form.get("salary")  
-  };
 
-  const options = {
-    method: 'PATCH',
-    headers: {
-      "Accept": "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(values)
-  };
 
-  fetch(apiUrl, options)
-    .then(res => {
-      if(!res.ok) throw new Error('PATCH request failed!');
-      return res.json
-    })
-    .then(data => {
-      console.log('Server response: ', data);
-    })
-    .catch(error => {
-      console.error(error);
+    if(nombre === "" || salario === ""){
+      const section = document.createElement("div");
+      section.classList.add("error");
+      const error = document.createElement("p");
+      error.textContent = "Todos los campos son necesarios"
+
+      section.appendChild(error)
+
+      const content = document.getElementById("addEmployee");
+      content.appendChild(section);
+    }
+
+    const errorE = document.querySelector(".error");
+
+    if(errorE) errorE.remove()
+
+
+    form.reset();
+
+    await fetch(`${API_URL}/api/employees/${id}`, {
+      headers: {
+        "Accept": "application/json",
+        "Content-type": "application/json",
+      },
+      method: "PATCH",
+      body: JSON.stringify(values)
     });
+
+    form.method = "POST";
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 //* Delete
