@@ -97,6 +97,7 @@ input[type=submit]{
   color: var(--input-bg);
   font-weight: bold;
   text-align: center;
+  cursor: pointer;
 }
 input:focus, textarea:focus{
   outline: 0 solid #306844;

@@ -1,4 +1,4 @@
-import { API_URL, form, requestPatch } from "../app.js";
+import { API_URL, fetchEmployees, form } from "../app.js"
 import { showButton } from "./form.js";
 
 export function newArticle(id, name, salary ){
@@ -34,24 +34,31 @@ export function newArticle(id, name, salary ){
 
   //* Attributes
   editE.setAttribute('data-id', id);
+  deleteE.setAttribute('data-id', id);
 
   //* Functions
   editE.onclick =  async function () {
     showButton();
 
     const id = this.getAttribute('data-id');
-
-    fetch(`${API_URL}/${id}`)
-    .then(res => {
-      if(!res.ok) throw new Error(`HTTP error!: ${res.status}`)
-      return res.json();
-    }).then(data => {
-      console.log(data);
-    }).catch(error => {
-      console.error(error);
-    })
     
-    ;
+    form.method = "patch";
+
+    fetchEmployees(id).then(employee => {
+      const { id, name, salary} = employee;
+      
+      document.getElementById("id").value = id
+      document.getElementById("name").value = name
+      document.getElementById("salary").value = salary
+      document.getElementById("addBtn").value = "Edit Employee"
+    });
+  }
+
+  deleteE.onclick = async function () {
+    const id = this.getAttribute('data-id');
+
+    await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
+    console.log("Empleado Eliminado!");
   }
   
   //* AppendChilds

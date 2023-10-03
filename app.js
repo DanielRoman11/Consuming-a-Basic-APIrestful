@@ -4,9 +4,14 @@ export const API_URL = "https://employeeapp-lw7c.onrender.com/api/employees";
 
 const content = document.getElementById("content");
 
+
+const methods = ["post", "patch"]
+
+
 //* Get
-async function fetchEmployees() {
-  const response = await fetch(`${API_URL}`);
+export async function fetchEmployees(id) {
+  id === undefined ? id = "" : id
+  const response = await fetch(`${API_URL}/${id}`);
   return await response.json();
 }
 
@@ -26,52 +31,62 @@ export let form = document.getElementById("addEmployee");
 
 form.onsubmit = async e => {
   e.preventDefault();
-
-  try {
-  const formulario = new FormData(form);
-
-  let nombre = formulario.get("name");
-  let salario = formulario.get("salary");
-
-  // console.log(nombre);
-  // console.log(salario);
-
-  if(nombre === "" || salario === ""){
-    const section = document.createElement("div");
-    section.classList.add("error");
-    const error = document.createElement("p");
-    error.textContent = "Todos los campos son necesarios"
-
-    section.appendChild(error)
-
-
-    const content = document.getElementById("addEmployee");
-    content.appendChild(section);
-
-    return setTimeout(() => {
-      section.remove();
-    }, 3000)
-  }
-
-  const values = {
-    name: nombre,
-    salary: salario
-  }
   
-  await fetch(`${API_URL}`, {
-    headers: {
-      "Accept": "application/json",
-      "Content-type": "application/json",
-    },
-    method: "POST",
-    body: JSON.stringify(values),
-  });
+  try {
+    const formulario = new FormData(form);
+    
+    const id = document.getElementById("")
+    const nombre = formulario.get("name");
+    const salario = formulario.get("salary");
+    
+    
+    console.log(id);
+    console.log(nombre);
+    console.log(salario);
+    
+    if(nombre === "" || salario === ""){
+      const section = document.createElement("div");
+      section.classList.add("error");
+      const error = document.createElement("p");
+      error.textContent = "Todos los campos son necesarios"
+      
+      section.appendChild(error)
 
-  form.reset();
+      
+      const content = document.getElementById("addEmployee");
+      content.appendChild(section);
+      
+      return setTimeout(() => {
+        section.remove();
+      }, 3000)
+    }
+    
+    const values = {
+      name: nombre,
+      salary: salario
+    }
+    form.reset();
 
-
-
-
+    if(form.method === methods[0]){
+      return await fetch(`${API_URL}`, {
+        headers: {
+          "Accept": "application/json",
+          "Content-type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify(values),
+      });
+    }
+    if(form.method === methods[1]){
+      return await fetch(`${API_URL}/${id}`, {
+        headers: {
+          "Accept": "application/json",
+          "Content-type": "application/json",
+        },
+        method: "PATCH",
+        body: JSON.stringify(values),
+      });
+    }
   } catch (error) {
     console.error('There was an error: ', error);
   }
@@ -91,7 +106,6 @@ export async function requestPatch(id) {
       name: nombre,
       salary: salario
     }
-
 
 
     if(nombre === "" || salario === ""){

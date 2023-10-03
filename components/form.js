@@ -1,3 +1,5 @@
+import { form } from "../app.js";
+
 //* Animations form and button
 const arrowBtn = document.querySelector("ion-icon");
 const myForm = document.getElementById("addEmployee");
@@ -21,6 +23,7 @@ function rotatedButton(){
     myForm.classList.add("slide-in");
     myForm.classList.remove("slide-out");
   } else {
+    form.method = "post"
     myForm.classList.add("slide-out");
     myForm.classList.remove("slide-in");
     setTimeout(() => {
