@@ -92,6 +92,10 @@ input{
   border: none;
   border-radius: 5px;
 }
+input:disabled {
+  backdrop-filter: 10px;
+  -webkit-backdrop-filter: blur();
+}
 input[type=submit]{
   background: var(--text-color);
   color: var(--input-bg);

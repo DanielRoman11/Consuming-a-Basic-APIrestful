@@ -5,9 +5,6 @@ export const API_URL = "https://employeeapp-lw7c.onrender.com/api/employees";
 const content = document.getElementById("content");
 
 
-const methods = ["post", "patch"]
-
-
 //* Get
 export async function fetchEmployees(id) {
   id === undefined ? id = "" : id
@@ -39,10 +36,9 @@ form.onsubmit = async e => {
     const nombre = formulario.get("name");
     const salario = formulario.get("salary");
     
-    
-    console.log(id);
-    console.log(nombre);
-    console.log(salario);
+    // console.log(id);
+    // console.log(nombre);
+    // console.log(salario);
     
     if(nombre === "" || salario === ""){
       const section = document.createElement("div");
@@ -77,9 +73,11 @@ form.onsubmit = async e => {
         },
         body: JSON.stringify(values),
       });
-      return console.log("Editado👌!");
+      console.log("Editado👌!");
     }
+    if(!id) {
     console.log("Subiendo...");
+
     await fetch(`${API_URL}`, {
       headers: {
         "Accept": "application/json",
@@ -88,9 +86,25 @@ form.onsubmit = async e => {
       method: "POST",
       body: JSON.stringify(values),
     });
+
     console.log("Empleado creado con Éxito!👌...");
+
+  }
+
+    fetchEmployees().then(employee => {  
+      if(Object.keys(employee).length === 0) return content.textContent('Employees list is empty');
+
+      employee.map((e, i) => {
+        if(i < content.childElementCount){
+          const { id, name, salary } = e;   
+          const newNode = newArticle(id, name, salary);
+          const previewNode = content.childNodes[i];
+          console.log(i);
+          content.replaceChild(newNode, previewNode)
+        }
+      });
+    });
   } catch (error) {
     console.error('There was an error: ', error);
   }
 }
-
