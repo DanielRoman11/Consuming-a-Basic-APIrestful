@@ -1,4 +1,4 @@
-import { API_URL, fetchEmployees, form } from "../app.js"
+import { API_URL, fetchEmployees, } from "../app.js"
 import { showButton } from "./form.js";
 
 export function newArticle(id, name, salary ){
@@ -57,6 +57,20 @@ export function newArticle(id, name, salary ){
     console.log("Eliminando empleado...");
     await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
     console.log("Empleado Eliminado!");
+    
+    const content = document.getElementById("content");
+
+    while (content.hasChildNodes()) {
+      content.removeChild(content.firstChild)
+    }
+    fetchEmployees().then(employee => {  
+      employee.map((e, i) => {
+          const { id, name, salary } = e;   
+          const a = newArticle(id, name, salary)
+      
+          content.appendChild(a);
+      });
+    });
   }
   
   //* AppendChilds

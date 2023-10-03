@@ -13,8 +13,6 @@ export async function fetchEmployees(id) {
 }
 
 fetchEmployees().then(employee => {
-  if(Object.keys(employee) === 0) return content.textContent('Employees list is empty');
-
   employee.map(e => {
     const { id, name, salary } = e;   
     const a = newArticle(id, name, salary)
@@ -35,10 +33,7 @@ form.onsubmit = async e => {
     const id = document.getElementById("id").value
     const nombre = formulario.get("name");
     const salario = formulario.get("salary");
-    
-    // console.log(id);
-    // console.log(nombre);
-    // console.log(salario);
+
     
     if(nombre === "" || salario === ""){
       const section = document.createElement("div");
