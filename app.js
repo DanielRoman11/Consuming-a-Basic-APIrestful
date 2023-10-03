@@ -86,10 +86,8 @@ form.onsubmit = async e => {
       method: "POST",
       body: JSON.stringify(values),
     });
-
     console.log("Empleado creado con Éxito!👌...");
-
-  }
+    }
 
     fetchEmployees().then(employee => {  
       if(Object.keys(employee).length === 0) return content.textContent('Employees list is empty');
@@ -99,7 +97,8 @@ form.onsubmit = async e => {
           const { id, name, salary } = e;   
           const newNode = newArticle(id, name, salary);
           const previewNode = content.childNodes[i];
-          console.log(i);
+
+          // console.log(i);
           content.replaceChild(newNode, previewNode)
         }
       });
