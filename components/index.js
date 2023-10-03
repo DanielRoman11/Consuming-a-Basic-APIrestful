@@ -41,8 +41,6 @@ export function newArticle(id, name, salary ){
     showButton();
 
     const id = this.getAttribute('data-id');
-    
-    form.method = "patch";
 
     fetchEmployees(id).then(employee => {
       const { id, name, salary} = employee;
@@ -56,7 +54,7 @@ export function newArticle(id, name, salary ){
 
   deleteE.onclick = async function () {
     const id = this.getAttribute('data-id');
-
+    console.log("Eliminando empleado...");
     await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
     console.log("Empleado Eliminado!");
   }

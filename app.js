@@ -35,7 +35,7 @@ form.onsubmit = async e => {
   try {
     const formulario = new FormData(form);
     
-    const id = document.getElementById("")
+    const id = document.getElementById("id").value
     const nombre = formulario.get("name");
     const salario = formulario.get("salary");
     
@@ -67,80 +67,30 @@ form.onsubmit = async e => {
     }
     form.reset();
 
-    if(form.method === methods[0]){
-      return await fetch(`${API_URL}`, {
-        headers: {
-          "Accept": "application/json",
-          "Content-type": "application/json",
-        },
-        method: "POST",
-        body: JSON.stringify(values),
-      });
-    }
-    if(form.method === methods[1]){
-      return await fetch(`${API_URL}/${id}`, {
-        headers: {
-          "Accept": "application/json",
-          "Content-type": "application/json",
-        },
+    if(id){
+      console.log("Editando...");
+      await fetch(`${API_URL}/${id}`, {
         method: "PATCH",
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          "Accept": "application/json",
+        },
         body: JSON.stringify(values),
       });
+      return console.log("Editado👌!");
     }
-  } catch (error) {
-    console.error('There was an error: ', error);
-  }
-}
-
-//* Update
-export async function requestPatch(id) {
-  try {
-    form.method = "PUT";
-    
-    const formulario = new FormData(form);
-
-    let nombre = formulario.get("name");
-    let salario = formulario.get("salary");
-    
-    const values = {
-      name: nombre,
-      salary: salario
-    }
-
-
-    if(nombre === "" || salario === ""){
-      const section = document.createElement("div");
-      section.classList.add("error");
-      const error = document.createElement("p");
-      error.textContent = "Todos los campos son necesarios"
-
-      section.appendChild(error)
-
-      const content = document.getElementById("addEmployee");
-      content.appendChild(section);
-    }
-
-    const errorE = document.querySelector(".error");
-
-    if(errorE) errorE.remove()
-
-
-    form.reset();
-
-    await fetch(`${API_URL}/api/employees/${id}`, {
+    console.log("Subiendo...");
+    await fetch(`${API_URL}`, {
       headers: {
         "Accept": "application/json",
         "Content-type": "application/json",
       },
-      method: "PATCH",
-      body: JSON.stringify(values)
+      method: "POST",
+      body: JSON.stringify(values),
     });
-
-    form.method = "POST";
+    console.log("Empleado creado con Éxito!👌...");
   } catch (error) {
-    console.error(error);
+    console.error('There was an error: ', error);
   }
 }
-
-//* Delete
 
