@@ -8,13 +8,22 @@
   --card-color: #1B273D;
   --input-bg: #1B273D;
 }
+html{
+  margin: 0;
+  padding: 0;
+  min-height: 100dvh;
+}
 body{
-  margin: 0 auto !important;
+  margin: 0 auto;
+  min-height: 100%;
   font-family: 'JetBrains Mono', monospace;
   background: var(--background-color);
   background-attachment: fixed;
   background-position: center;
   animation: backgroundMove linear 5s infinite;
+}
+main{
+  min-height: 100%;
 }
 h1{
   font-family: 'Sigmar', cursive;
@@ -179,6 +188,13 @@ button:last-of-type{
   padding: 1em 1.3em;
   text-align: center;
   width: min-content;
+}
+#version{
+  position: absolute;
+  bottom: 10;
+  right: 0;
+  left: 10;
+  color: wheat;
 }
 
 @keyframes backgroundMove { to{ background-position-x: 100vw; background-position-y: -100vh;} }
