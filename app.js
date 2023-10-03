@@ -73,7 +73,24 @@ form.onsubmit = async e => {
         },
         body: JSON.stringify(values),
       });
+      
+      fetchEmployees().then(employee => {  
+        if(Object.keys(employee).length === 0) return content.textContent('Employees list is empty');
+  
+        employee.map((e, i) => {
+          if(i < content.childElementCount){
+            const { id, name, salary } = e;   
+            const newNode = newArticle(id, name, salary);
+            const previewNode = content.childNodes[i];
+  
+            // console.log(i);
+            content.replaceChild(newNode, previewNode)
+          }
+        });
+      });
+      
       console.log("Editado👌!");
+
     }
     if(!id) {
     console.log("Subiendo...");
@@ -86,23 +103,22 @@ form.onsubmit = async e => {
       method: "POST",
       body: JSON.stringify(values),
     });
-    console.log("Empleado creado con Éxito!👌...");
-    }
 
     fetchEmployees().then(employee => {  
       if(Object.keys(employee).length === 0) return content.textContent('Employees list is empty');
 
       employee.map((e, i) => {
-        if(i < content.childElementCount){
+        if(i === content.childElementCount){
           const { id, name, salary } = e;   
           const newNode = newArticle(id, name, salary);
-          const previewNode = content.childNodes[i];
 
-          // console.log(i);
-          content.replaceChild(newNode, previewNode)
+          content.appendChild(newNode)
         }
       });
     });
+
+    console.log("Empleado creado con Éxito!👌...");
+    }
   } catch (error) {
     console.error('There was an error: ', error);
   }
