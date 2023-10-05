@@ -41,3 +41,19 @@ export function showButton(){
     isFormVisible = !isFormVisible;
   }
 }
+export function hideButton(){
+  if(isFormVisible && isRotated){
+    arrowBtn.classList.remove("rotate-90");
+    myForm.classList.add("slide-out");
+    myForm.classList.remove("slide-in");
+    setTimeout(() => {
+      myForm.style.display = "none";
+    }, 100);
+
+    const btn = document.getElementById("addBtn");
+
+    btn.value = "Add Employee"
+    isRotated = !isRotated;
+    isFormVisible = !isFormVisible;
+  }
+}

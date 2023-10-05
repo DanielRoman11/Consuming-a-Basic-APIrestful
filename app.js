@@ -1,3 +1,4 @@
+import { hideButton } from "./components/form.js";
 import { newArticle } from "./components/index.js";
 
 export const API_URL = "https://backend-node-plea-dev.fl0.io/api/employees";
@@ -86,6 +87,7 @@ form.onsubmit = async e => {
           }
         });
       });
+      hideButton();
       
       console.log("Editado👌!");
 
