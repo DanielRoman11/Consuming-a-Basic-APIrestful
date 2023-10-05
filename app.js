@@ -1,6 +1,6 @@
 import { newArticle } from "./components/index.js";
 
-export const API_URL = "https://employeeapp-lw7c.onrender.com/api/employees";
+export const API_URL = "https://backend-node-plea-dev.fl0.io/api/employees";
 
 const content = document.getElementById("content");
 
@@ -24,6 +24,9 @@ fetchEmployees().then(employee => {
 //* Post
 export let form = document.getElementById("addEmployee");
 
+form.action = API_URL
+
+console.log(form.action);
 form.onsubmit = async e => {
   e.preventDefault();
   
