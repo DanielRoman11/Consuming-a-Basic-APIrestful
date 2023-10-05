@@ -52,13 +52,17 @@ export function hideButton(){
     arrowBtn.classList.remove("rotate-90");
     myForm.classList.add("slide-out");
     myForm.classList.remove("slide-in");
+    document.getElementById("id").value = ''
+    document.getElementById("id").classList.add("hidden")
     setTimeout(() => {
       myForm.style.display = "none";
     }, 100);
 
     const btn = document.getElementById("addBtn");
+    
 
-    btn.value = "Add Employee"
+
+    btn.value = "Add"
     isRotated = !isRotated;
     isFormVisible = !isFormVisible;
   }

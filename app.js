@@ -62,6 +62,7 @@ form.onsubmit = async e => {
     }
     form.reset();
 
+    hideButton();
     if(id){
       console.log("Editando...");
       await fetch(`${API_URL}/${id}`, {
@@ -75,20 +76,19 @@ form.onsubmit = async e => {
       
       fetchEmployees().then(employee => {  
         if(Object.keys(employee).length === 0) return content.textContent('Employees list is empty');
-  
+        
         employee.map((e, i) => {
           if(i < content.childElementCount){
             const { id, name, salary } = e;   
             const newNode = newArticle(id, name, salary);
             const previewNode = content.childNodes[i];
-  
+            
             // console.log(i);
             content.replaceChild(newNode, previewNode)
           }
         });
       });
-      hideButton();
-      
+
       console.log("Editado👌!");
 
     }
