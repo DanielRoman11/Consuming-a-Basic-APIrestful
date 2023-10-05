@@ -46,9 +46,11 @@ export function newArticle(id, name, salary ){
       const { id, name, salary} = employee;
       
       document.getElementById("id").value = id
+      document.getElementById("id").classList.remove("hidden");
+      document.getElementById("id").classList.add("border");
       document.getElementById("name").value = name
       document.getElementById("salary").value = salary
-      document.getElementById("addBtn").value = "Edit Employee"
+      document.getElementById("addBtn").value = "Edit"
     });
   }
 

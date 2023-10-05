@@ -18,15 +18,15 @@
       <div>
         <ion-icon id="showBtn" name="chevron-forward-circle-outline"></ion-icon>
         <form id="addEmployee" class="content-form" method="post" novalidate>
-          <label 
-            for="id">ID: 
-          </label>
+          <div class="relative"> 
             <input 
-              type="text"
-              name="id"
-              id="id"
-              disabled
+            type="text"
+            name="id"
+            id="id"
+            class="hidden"
+            disabled
             />
+          </div>
           <label 
             for="name">Name: 
           </label>
@@ -48,7 +48,7 @@
           <input 
             id="addBtn" 
             type="submit" 
-            value="Add Employee"
+            value="Add"
           />
         </form>
       </div>

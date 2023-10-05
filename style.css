@@ -12,11 +12,15 @@ html{
   margin: 0;
   padding: 0;
   min-height: 100dvh;
+  font-family: 'JetBrains Mono';
 }
 body{
   margin: 0 auto;
   min-height: 100%;
   font-family: 'JetBrains Mono', monospace;
+  font-display: swap;
+  font-style: normal;
+  font-weight: 300;
   background: var(--background-color);
   background-attachment: fixed;
   background-position: center;
@@ -42,9 +46,9 @@ p{
 ion-icon{
   z-index: 1;
   position: fixed;
-  top: 1rem;
-  left: 1rem;
-  color: #f8e4cc;
+  top: 10rem;
+  left: 5rem;
+  color: #d16b0b;
   font-size: 4rem;
   cursor: pointer;
 }
@@ -54,18 +58,17 @@ ion-icon:not(:active){ transition: 0.5s; }
   background-color: rgba(0 0 0 / 0.5);
   backdrop-filter: blur(15px);
   position: fixed;
-  top: 5rem;
+  top: 15rem;
   display: none;
   align-items: center;
-  width: 17rem;
+  width: 20rem;
   z-index: 1;
-  padding: 0 1rem;
   font-variant: normal;
   font-size: 1rem;
   font-weight: bold;
   flex-direction: column;
   padding: 1rem 0.2rem;
-  border: 3px dashed #f8e4cc;
+  border: 3px dashed #d16b0b;
   border-radius: 10px;
   color: var(--text-color)
 }
@@ -74,8 +77,18 @@ ion-icon:not(:active){ transition: 0.5s; }
   transition: transform 0.1s ease-in-out;
 }
 .slide-in {
-  transform: translateX(2rem);
+  transform: translateX(5rem);
   transition: transform 0.1s ease;
+}
+@media (max-width: 480px) {
+  .slide-in {
+    transform: translateX(2rem);
+    transition: transform 0.1s ease;
+  }
+  ion-icon{
+    top: 10rem;
+    left: 0.5rem;
+  }
 }
 .slide-out {
   transform: translateX(-120%);
@@ -92,30 +105,57 @@ ion-icon:not(:active){ transition: 0.5s; }
   text-align:center ;
   color: #ffffff !important;
 }
+div.relative{
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: flex-start;
+  position: relative;
+  width: 100%;
+  height: 1em;
+}
+input#id{
+  position: absolute;
+  color: #d16b0b;
+  border: #d16b0b 3px dashed;
+  border-top: none;
+  border-radius: 10px;
+  font-weight: 800;
+  width: 15px;
+  right: 0em;
+  bottom: -1.4em;
+}
+.hidden{
+  visibility: hidden;
+}
 input{
   color: var(--text-color);
-  background: var(--input-bg);
+  background: none;
   width: 60%;
   padding: 0.5rem;
   margin: 1rem 0;
   border: none;
-  border-radius: 5px;
+  border-bottom: 3px dashed #d16b0b;
+  border-radius: 2px;
+  text-align: center;
+  font-size: 1.2em;
 }
 input:disabled {
   backdrop-filter: 10px;
   -webkit-backdrop-filter: blur();
 }
 input[type=submit]{
-  background: var(--text-color);
-  color: var(--input-bg);
+  color: var(--text-color);
   font-weight: bold;
+  border: 3px dashed #d16b0b;
   text-align: center;
   cursor: pointer;
 }
+input[type=submit]:hover{
+  background: rgba(209 107 11 0.80);
+}
 input:focus, textarea:focus{
-  outline: 0 solid #306844;
-  outline-style: auto;
-  outline-width: 0.5px;
+  outline: none;
 }
 .empleado-container{
   padding: 2rem 0.5rem;
