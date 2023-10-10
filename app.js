@@ -5,7 +5,11 @@ export const API_URL = "https://backend-node-plea-dev.fl0.io/api/employees";
 
 const content = document.getElementById("content");
 
+const body = document.body;
+const loader = document.createElement("div");
+loader.classList.add("loader");
 
+body.appendChild(loader)
 //* Get
 export async function fetchEmployees(id) {
   id === undefined ? id = "" : id
@@ -14,12 +18,17 @@ export async function fetchEmployees(id) {
 }
 
 fetchEmployees().then(employee => {
-  employee.map(e => {
+  body.removeChild(loader)
+  if(employee.length){
+  return employee.map(e => {
     const { id, name, salary } = e;   
     const a = newArticle(id, name, salary)
 
     content.appendChild(a);
-  });
+  })
+  }
+  content.style.color = "white"
+  content.innerText = "No employees to show"
 });
 
 //* Post
@@ -27,7 +36,6 @@ export let form = document.getElementById("addEmployee");
 
 form.action = API_URL
 
-console.log(form.action);
 form.onsubmit = async e => {
   e.preventDefault();
   
@@ -64,7 +72,7 @@ form.onsubmit = async e => {
 
     hideButton();
     if(id){
-      console.log("Editando...");
+      content.textContent = "Editing...";
       await fetch(`${API_URL}/${id}`, {
         method: "PATCH",
         headers: {
@@ -75,7 +83,7 @@ form.onsubmit = async e => {
       });
       
       fetchEmployees().then(employee => {  
-        if(Object.keys(employee).length === 0) return content.textContent('Employees list is empty');
+        if(Object.keys(employee).length === 0) content.textContent = "No employees to show"
         
         employee.map((e, i) => {
           if(i < content.childElementCount){
@@ -88,11 +96,11 @@ form.onsubmit = async e => {
           }
         });
       });
-
-      console.log("Editado👌!");
+      content.style.color = "white";
+      content.textContent = "Employee updated! 👌";
     }
     if(!id) {
-      console.log("Subiendo...");
+      content.textContent = "Creating new Employee..."
 
       await fetch(`${API_URL}`, {
         headers: {
@@ -115,19 +123,13 @@ form.onsubmit = async e => {
           }
         });
       });
-      console.log("Empleado creado con Éxito!👌...");
+      content.style.color = "white";
+      content.textContent = "Employee created! 👌"
     }
   } catch (error) {
     console.error('There was an error: ', error);
   }
 }
 
-const loader = document.createElement("div");
-loader.classList.add("loader");
 
-content.appendChild(loader)
-
-content.addEventListener("loadstart", () => {
-  loader.remove();
-})
 

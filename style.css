@@ -238,22 +238,31 @@ button:last-of-type{
 }
 
 .loader {
-  height: 50px;
-  aspect-ratio: 2;
-  border: 10px solid #000;
-  box-sizing: border-box;
-  background: 
-    radial-gradient(farthest-side,#fff 98%,#0000) left/20px 20px,
-    radial-gradient(farthest-side,#fff 98%,#0000) left/20px 20px,
-    radial-gradient(farthest-side,#fff 98%,#0000) center/20px 20px,
-    radial-gradient(farthest-side,#fff 98%,#0000) right/20px 20px,
-    #000;
-  background-repeat: no-repeat;
-  filter: blur(4px) contrast(10);
-  animation: l14 1s infinite;
+  width: 40px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--title-color);
+  box-shadow: 0 0 0 0 #0004;
+  animation: l2 1.5s infinite linear;
+  position: absolute;
+  margin: 0 auto;
+  inset: 50%;
 }
-@keyframes l14 {
-  100%  {background-position:right,left,center,right}
+.loader:before,
+.loader:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: 0 0 0 0 rgba(197, 162, 5, 0.267);
+  animation: inherit;
+  animation-delay: -0.5s;
+}
+.loader:after {
+  animation-delay: -1s;
+}
+@keyframes l2 {
+    100% {box-shadow: 0 0 0 40px #d6c10527}
 }
 
 
