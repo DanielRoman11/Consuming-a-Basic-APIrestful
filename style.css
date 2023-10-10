@@ -238,26 +238,22 @@ button:last-of-type{
 }
 
 .loader {
-  position: absolute;
-  z-index: 10;
-  width: 210px;
-  height: 200px;
-  border: 5px solid #000000c0;
-  border-radius: 15px;
-  padding: 0 8px;
+  height: 50px;
+  aspect-ratio: 2;
+  border: 10px solid #000;
   box-sizing: border-box;
-  background:
-    linear-gradient(#f00404 0 0) 0    0/8px 20px,
-    linear-gradient(#1215e0 0 0) 100% 0/8px 20px,
-    radial-gradient(farthest-side,#c98913 90%,#00000031) 0 5px/8px 8px content-box,
-    #ffd000;
-  background-repeat: no-repeat; 
-  animation: l3 2s infinite linear;
+  background: 
+    radial-gradient(farthest-side,#fff 98%,#0000) left/20px 20px,
+    radial-gradient(farthest-side,#fff 98%,#0000) left/20px 20px,
+    radial-gradient(farthest-side,#fff 98%,#0000) center/20px 20px,
+    radial-gradient(farthest-side,#fff 98%,#0000) right/20px 20px,
+    #000;
+  background-repeat: no-repeat;
+  filter: blur(4px) contrast(10);
+  animation: l14 1s infinite;
 }
-@keyframes l3{
-  25% {background-position: 0 0   ,100% 100%,100% calc(100% - 5px)}
-  50% {background-position: 0 100%,100% 100%,0    calc(100% - 5px)}
-  75% {background-position: 0 100%,100%    0,100% 5px}
+@keyframes l14 {
+  100%  {background-position:right,left,center,right}
 }
 
 

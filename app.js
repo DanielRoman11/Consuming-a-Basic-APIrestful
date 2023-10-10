@@ -1,6 +1,5 @@
 import { hideButton } from "./components/form.js";
 import { newArticle } from "./components/index.js";
-import { loader } from "./components/loader.js";
 
 export const API_URL = "https://backend-node-plea-dev.fl0.io/api/employees";
 
@@ -65,7 +64,6 @@ form.onsubmit = async e => {
 
     hideButton();
     if(id){
-      loader(false)
       console.log("Editando...");
       await fetch(`${API_URL}/${id}`, {
         method: "PATCH",
@@ -75,7 +73,6 @@ form.onsubmit = async e => {
         },
         body: JSON.stringify(values),
       });
-      loader(true);
       
       fetchEmployees().then(employee => {  
         if(Object.keys(employee).length === 0) return content.textContent('Employees list is empty');
@@ -95,7 +92,6 @@ form.onsubmit = async e => {
       console.log("Editado👌!");
     }
     if(!id) {
-      loader(false)
       console.log("Subiendo...");
 
       await fetch(`${API_URL}`, {
@@ -106,7 +102,6 @@ form.onsubmit = async e => {
         method: "POST",
         body: JSON.stringify(values),
       });
-      loader(true);
       
       fetchEmployees().then(employee => {  
         if(Object.keys(employee).length === 0) return content.textContent('Employees list is empty');
@@ -126,3 +121,13 @@ form.onsubmit = async e => {
     console.error('There was an error: ', error);
   }
 }
+
+const loader = document.createElement("div");
+loader.classList.add("loader");
+
+content.appendChild(loader)
+
+content.addEventListener("loadstart", () => {
+  loader.remove();
+})
+
