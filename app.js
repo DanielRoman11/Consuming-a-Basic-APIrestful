@@ -72,7 +72,7 @@ form.onsubmit = async e => {
 
     hideButton();
     if(id){
-      content.textContent = "Editing...";
+      content.innerText = "Editing...";
       await fetch(`${API_URL}/${id}`, {
         method: "PATCH",
         headers: {
@@ -97,10 +97,10 @@ form.onsubmit = async e => {
         });
       });
       content.style.color = "white";
-      content.textContent = "Employee updated! 👌";
+      content.innerText = "Employee updated! 👌";
     }
     if(!id) {
-      content.textContent = "Creating new Employee..."
+      content.innerText = "Creating new Employee..."
 
       await fetch(`${API_URL}`, {
         headers: {
@@ -124,7 +124,7 @@ form.onsubmit = async e => {
         });
       });
       content.style.color = "white";
-      content.textContent = "Employee created! 👌"
+      content.innerText = "Employee created! 👌"
     }
   } catch (error) {
     console.error('There was an error: ', error);
