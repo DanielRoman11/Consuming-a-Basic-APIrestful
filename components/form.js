@@ -15,7 +15,6 @@ function rotatedButton(){
     arrowBtn.classList.add("rotate-90");
   } else {
     arrowBtn.classList.remove("rotate-90");
-    
   }
   if (isFormVisible) {
     myForm.style.display = "flex";
@@ -25,15 +24,11 @@ function rotatedButton(){
     myForm.classList.add("slide-out");
     myForm.classList.remove("slide-in");
 
-    document.getElementById("id").value = ''
-    document.getElementById("id").classList.add("hidden")
-    document.getElementById("name").value = ''
-    document.getElementById("salary").value = ''
-    document.getElementById("addBtn").value = "Add"
-
-    setTimeout(() => {
-      myForm.style.display = "none";
-    }, 100);
+    document.getElementById("id").value = '';
+    document.getElementById("id").classList.add("hidden");
+    document.getElementById("name").value = '';
+    document.getElementById("salary").value = '';
+    document.getElementById("addBtn").value = "Add";
   }
 }
 export function showButton(){
