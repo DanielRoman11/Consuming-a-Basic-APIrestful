@@ -1,14 +1,14 @@
 
 export function checkInputError(name, salary) {
   
-  const pattern = /[a-z]/i;
+  const pattern = /^[a-z]+$/i;
   
   if(pattern.test(name) === false || salary === ""){
     const section = document.createElement("div");
     section.classList.add("error");
 
     const error = document.createElement("p");
-    error.textContent = "Employee cannot be empty";
+    error.textContent = "Got to be a real employee";
     
     section.appendChild(error);
     
