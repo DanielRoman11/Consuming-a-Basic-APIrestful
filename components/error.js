@@ -8,7 +8,7 @@ export function checkInputError(name, salary) {
     section.classList.add("error");
 
     const error = document.createElement("p");
-    error.textContent = "Got to be a real employee";
+    error.textContent = "It must be a real employee";
     
     section.appendChild(error);
     
