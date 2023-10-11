@@ -11,7 +11,7 @@ const loader = document.createElement("div");
 loader.classList.add("loader");
 
 body.appendChild(loader)
-//* Get
+//* HTTP GET VERB
 export async function fetchEmployees(id) {
   id === undefined ? id = "" : id
   const response = await fetch(`${API_URL}/${id}`);
@@ -48,10 +48,7 @@ form.onsubmit = async e => {
     const salario = formulario.get("salary");
 
     //? Checks errors in form inputs
-    if (checkInputError(nombre, salario)) {
-      return
-    }
-
+    if(checkInputError(nombre, salario)) return;
     
     const values = {
       name: nombre,
@@ -60,6 +57,7 @@ form.onsubmit = async e => {
     form.reset();
 
     hideButton();
+    //* HTTP PATCH VERB
     if(id){
       body.appendChild(loader);
       content.classList.add("hidden");
@@ -90,9 +88,12 @@ form.onsubmit = async e => {
       content.classList.remove("hidden");
       body.removeChild(loader);
     }
+    //* HTTP POST VERB
     if(!id) {
       body.appendChild(loader);
       content.classList.add("hidden");
+
+      content.innerText = ""
 
       await fetch(`${API_URL}`, {
         headers: {

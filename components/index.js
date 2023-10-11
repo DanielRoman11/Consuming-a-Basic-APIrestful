@@ -53,7 +53,7 @@ export function newArticle(id, name, salary ){
       document.getElementById("addBtn").value = "Edit"
     });
   }
-
+    //* --> HTTP DELETE VERB
   deleteE.onclick = async function () {
     const id = this.getAttribute('data-id');
     console.log("Eliminando empleado...");
