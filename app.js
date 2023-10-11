@@ -1,3 +1,4 @@
+import { checkInputError } from "./components/error.js";
 import { hideButton } from "./components/form.js";
 import { newArticle } from "./components/index.js";
 
@@ -46,23 +47,11 @@ form.onsubmit = async e => {
     const nombre = formulario.get("name");
     const salario = formulario.get("salary");
 
-    
-    if(nombre === "" || salario === ""){
-      const section = document.createElement("div");
-      section.classList.add("error");
-      const error = document.createElement("p");
-      error.textContent = "Todos los campos son necesarios"
-      
-      section.appendChild(error)
-
-      
-      const content = document.getElementById("addEmployee");
-      content.appendChild(section);
-      
-      return setTimeout(() => {
-        section.remove();
-      }, 3000)
+    //? Checks errors in form inputs
+    if (checkInputError(nombre, salario)) {
+      return
     }
+
     
     const values = {
       name: nombre,

@@ -65,11 +65,12 @@ export function newArticle(id, name, salary ){
     while (content.hasChildNodes()) {
       content.removeChild(content.firstChild)
     }
-    fetchEmployees().then(employee => {  
+    fetchEmployees().then(employee => {
+      
+      
       employee.map((e, i) => {
           const { id, name, salary } = e;   
           const a = newArticle(id, name, salary)
-      
           content.appendChild(a);
       });
     });
