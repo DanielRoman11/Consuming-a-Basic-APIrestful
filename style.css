@@ -225,7 +225,7 @@ button:last-of-type{
   width: min-content;
 }
 #version{
-  position: absolute;
+  position: fixed;
   bottom: 10px;
   right: 0;
   left: 10px;
