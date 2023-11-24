@@ -13,9 +13,13 @@ loader.classList.add("loader");
 body.appendChild(loader)
 //* HTTP GET VERB
 export async function fetchEmployees(id) {
-  id === undefined ? id = "" : id
-  const response = await fetch(`${API_URL}/${id}`);
-  return await response.json();
+  try {
+    id === undefined ? id = "" : id
+    const response = await fetch(`${API_URL}/${id}`);
+    return await response.json();
+  } catch (error) {
+    console.error(error)
+  }
 }
 
 fetchEmployees().then(employee => {
