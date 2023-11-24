@@ -2,7 +2,7 @@ import { checkInputError } from "./components/error.js";
 import { hideButton } from "./components/form.js";
 import { newArticle } from "./components/index.js";
 
-export const API_URL = "https://backend-node-dev-agst.2.us-1.fl0.io/api/employees";
+export const API_URL = "https://backend-node.3.us-1.fl0.io/api/employees";
 
 const content = document.getElementById("content");
 
@@ -24,7 +24,7 @@ export async function fetchEmployees(id) {
 
 fetchEmployees().then(employee => {
   body.removeChild(loader)
-  if(employee.length){
+  if(employee.length || !undefined){
   return employee.map(e => {
     const { id, name, salary } = e;   
     const a = newArticle(id, name, salary)
