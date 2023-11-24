@@ -17,7 +17,7 @@ export async function fetchEmployees(id) {
     id === undefined ? id = "" : id
     const response = await fetch(`${API_URL}/${id}`,{
       headers: {
-        Origin: "https://danielroman11.github.io/Consuming-a-Basic-APIrestful/"
+        Origin: "https://danielroman11.github.io"
       }
     });
     return await response.json();
