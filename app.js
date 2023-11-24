@@ -28,7 +28,7 @@ export async function fetchEmployees(id) {
 
 fetchEmployees().then(employee => {
   body.removeChild(loader)
-  if(employee.length || employee.length !=undefined ){
+  if(employee.length || employee !== undefined ){
   return employee.map(e => {
     const { id, name, salary } = e;   
     const a = newArticle(id, name, salary)
