@@ -15,7 +15,11 @@ body.appendChild(loader)
 export async function fetchEmployees(id) {
   try {
     id === undefined ? id = "" : id
-    const response = await fetch(`${API_URL}/${id}`);
+    const response = await fetch(`${API_URL}/${id}`,{
+      headers: {
+        Origin: "https://danielroman11.github.io/Consuming-a-Basic-APIrestful/"
+      }
+    });
     return await response.json();
   } catch (error) {
     console.log(error)
